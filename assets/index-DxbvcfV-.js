@@ -1,0 +1,8 @@
+(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const r of t.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function n(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(e){if(e.ep)return;e.ep=!0;const t=n(e);fetch(e.href,t)}})();document.addEventListener("DOMContentLoaded",()=>{const o=document.getElementById("urlInput"),s=document.getElementById("generateBtn"),n=document.getElementById("qrcode"),i=document.getElementById("qrPlaceholder"),e=document.getElementById("instructions");function t(){const r=o.value.trim();if(!r){o.style.animation="shake 0.5s",setTimeout(()=>{o.style.animation=""},500);return}i.classList.add("hidden"),n.innerHTML="",n.classList.remove("show"),e.classList.remove("show"),setTimeout(()=>{new QRCode(n,{text:r,width:200,height:200,colorDark:"#0f172a",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H}),setTimeout(()=>{n.classList.add("show"),e.classList.add("show")},100)},300)}s.addEventListener("click",t),o.addEventListener("keypress",r=>{r.key==="Enter"&&t()})});const c=document.createElement("style");c.textContent=`
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+`;document.head.appendChild(c);
